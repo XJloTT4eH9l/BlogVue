@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { RouterLink } from 'vue-router';
     import type { PropType } from 'vue'
     import type Post from '../models'
 
@@ -9,16 +10,26 @@
 
 <template>
     <li v-if="item" class="post-item">
-        <h2 class="post-item__title">{{ item.title }}</h2>
-        <p class="post-item__text">{{ item.body }}</p>
+        <RouterLink :to="{ name: 'PostItem', params: { id: item.id } }">
+            <h2 class="post-item__title">{{ item.title }}</h2>
+            <p class="post-item__text">{{ item.body }}</p>
+        </RouterLink>
     </li>
 </template>
 
 <style lang="scss" scoped>
     .post-item {
-        padding: 30px;
-        border: 1px solid #000;
-        border-radius: 16px;
+        & a {
+            display: block;
+            padding: 30px;
+            border: 1px solid #000;
+            border-radius: 16px;
+            &:hover {
+                .post-item__title {
+                    text-decoration: underline;
+                }
+            }
+        }
         &:not(:last-child) {
             margin-bottom: 10px;
         }

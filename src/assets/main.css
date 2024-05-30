@@ -35,6 +35,11 @@ body {
   background-color: aquamarine;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 ul[class],
 ol[class] {
   list-style: none;
