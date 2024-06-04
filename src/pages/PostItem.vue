@@ -26,8 +26,8 @@
     <main class="wrapper">
         <BackButton />
         <div v-if="postPageInfo">
-            <span>ID: </span>
-            <span>{{ postPageInfo.id }}</span>
+            <span>UserId: </span>
+            <span>{{ postPageInfo.userId }}</span>
             <h1>{{ postPageInfo.title }}</h1>
             <p>{{ postPageInfo.body }}</p>
         </div>

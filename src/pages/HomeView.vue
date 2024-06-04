@@ -4,26 +4,49 @@
     import type Post from '../models';
 
     import PostList from '../components/PostList.vue';
+    import SearchPosts from '../components/SearchPosts.vue';
     import Loader from '../components/Loader.vue';
 
     const posts = ref<Post[] | null>(null);
     const loadingState = ref<boolean>(true);
 
-    onMounted(async () => {
+    const searchPost = async (value: string)  => {
+        if(value.length === 0) {
+            await getAllPosts();
+        } else {
+            loadingState.value = true;
+
+            const searchedPosts = await FetchHelper.searchPosts(value);
+            if(searchedPosts) {
+                posts.value = searchedPosts;
+            }
+
+            loadingState.value = false; 
+        }
+    }
+
+    const getAllPosts = async () => {
+        loadingState.value = true;
         const fetchedPosts = await FetchHelper.getPosts();
         if(fetchedPosts) {
             posts.value = fetchedPosts;
         }
         loadingState.value = false;
+    }
+
+    onMounted(async () => {
+        await getAllPosts();
     });
 </script>
 
 <template>
     <main class="wrapper">
         <h1>Posts</h1>
-        <PostList v-if="posts" :posts = posts />
-        <Loader v-else-if="loadingState" />
-        <h2 v-else >Cannot fetch posts</h2>
+        <SearchPosts @searchPost="searchPost" />
+        <Loader v-if="loadingState" />
+        <div v-else>
+            <PostList v-if="posts" :posts = posts />
+        </div>
     </main>
 </template>
 

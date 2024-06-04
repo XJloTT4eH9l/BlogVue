@@ -31,4 +31,19 @@ export default class FetchHelper {
             return null
         }
     }
+    static async searchPosts(value: string) {
+        try {
+            const res = await fetch(`${API_POSTS}?userId=${value}`);
+
+            if(!res.ok) {
+                throw new Error('Invalid')
+            }
+
+            const filtredPosts: Post[] = await res.json();
+
+            return filtredPosts
+        } catch(error) {
+            return null
+        }
+    }
 }
