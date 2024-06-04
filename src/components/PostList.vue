@@ -10,7 +10,6 @@
 </script>
 
 <template>
-    <h1>Posts</h1>
     <ul v-if="posts && posts.length > 0" class="post-list">
         <PostItem
             v-for="item in posts"

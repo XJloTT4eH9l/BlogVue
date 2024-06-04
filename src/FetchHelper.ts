@@ -11,9 +11,9 @@ export default class FetchHelper {
             }
 
             const posts: Post[] = await res.json();
-            return posts.slice(0, 10);
+            return posts
         } catch (error) {
-            console.log(error);
+            return null
         }
     }
     static async getSinglePost(id: number) {
@@ -28,7 +28,7 @@ export default class FetchHelper {
             
             return post;
         } catch (error) {
-            console.log(error);
+            return null
         }
     }
 }

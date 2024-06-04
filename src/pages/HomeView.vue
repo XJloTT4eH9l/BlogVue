@@ -4,20 +4,26 @@
     import type Post from '../models';
 
     import PostList from '../components/PostList.vue';
+    import Loader from '../components/Loader.vue';
 
-    const posts = ref<Post[]>([]);
+    const posts = ref<Post[] | null>(null);
+    const loadingState = ref<boolean>(true);
 
     onMounted(async () => {
         const fetchedPosts = await FetchHelper.getPosts();
         if(fetchedPosts) {
             posts.value = fetchedPosts;
         }
+        loadingState.value = false;
     });
 </script>
 
 <template>
     <main class="wrapper">
-        <PostList :posts = posts />
+        <h1>Posts</h1>
+        <PostList v-if="posts" :posts = posts />
+        <Loader v-else-if="loadingState" />
+        <h2 v-else >Cannot fetch posts</h2>
     </main>
 </template>
 
