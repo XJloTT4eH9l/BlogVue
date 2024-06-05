@@ -1,7 +1,6 @@
 <script setup lang="ts">
-    import { RouterLink, useRoute } from 'vue-router';
+    import { useRoute } from 'vue-router';
     import { ref, onMounted } from 'vue';
-    import { toRefs } from 'vue';
     import FetchHelper from '../FetchHelper';
     import type Post from '../models';
 

@@ -16,7 +16,7 @@
     />
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
     input {
         display: block;
         width: 250px;

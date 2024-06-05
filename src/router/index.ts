@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../pages/HomeView.vue'
 import PostItem from '../pages/PostItem.vue'
+import CreatePostPage from '../pages/CreatePostPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       component: PostItem,
       props: true
     },
+    {
+      path: '/create-post',
+      name: 'CreatePostPage',
+      component: CreatePostPage,
+    }
     // {
     //   path: '/about',
     //   name: 'about',

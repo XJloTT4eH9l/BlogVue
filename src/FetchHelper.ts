@@ -31,9 +31,9 @@ export default class FetchHelper {
             return null
         }
     }
-    static async searchPosts(value: string) {
+    static async searchPosts(params: URLSearchParams) {
         try {
-            const res = await fetch(`${API_POSTS}?userId=${value}`);
+            const res = await fetch(`${API_POSTS}?${params.toString()}`);
 
             if(!res.ok) {
                 throw new Error('Invalid')
@@ -42,6 +42,27 @@ export default class FetchHelper {
             const filtredPosts: Post[] = await res.json();
 
             return filtredPosts
+        } catch(error) {
+            return null
+        }
+    }
+    static async createPost(post: Post) {
+        try {
+            const res = await fetch(API_POSTS, {
+                method: 'POST',
+                body: JSON.stringify({ post }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+
+            if(!res.ok) {
+                throw new Error('Invalid');
+            } 
+            
+            const resJson = await res.json();
+            return resJson
+
         } catch(error) {
             return null
         }

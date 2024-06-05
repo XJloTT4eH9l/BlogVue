@@ -16,7 +16,9 @@
         } else {
             loadingState.value = true;
 
-            const searchedPosts = await FetchHelper.searchPosts(value);
+            const searchParams = new URLSearchParams({ userId: value })
+            const searchedPosts = await FetchHelper.searchPosts(searchParams);
+
             if(searchedPosts) {
                 posts.value = searchedPosts;
             }
@@ -41,7 +43,7 @@
 
 <template>
     <main class="wrapper">
-        <h1>Posts</h1>
+        <h1>Blog</h1>
         <SearchPosts @searchPost="searchPost" />
         <Loader v-if="loadingState" />
         <div v-else>
@@ -53,7 +55,7 @@
 <style>
     .wrapper {
         max-width: 1270px;
-        padding: 0 15px;
+        padding: 10px 15px 0 15px;
         margin: 0 auto;
     }
 </style>
