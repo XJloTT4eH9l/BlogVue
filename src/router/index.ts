@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/posts/:id',
-      name: 'PostItem',
+      name: 'PostItemPage',
       component: PostItemPage,
       props: true
     },

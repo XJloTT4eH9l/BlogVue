@@ -10,7 +10,7 @@
 
 <template>
     <li v-if="item" class="post-item">
-        <RouterLink :to="{ name: 'PostItem', params: { id: item.id } }">
+        <RouterLink :to="{ name: 'PostItemPage', params: { id: item.id } }">
             <h2 class="post-item__title">{{ item.title }}</h2>
             <p class="post-item__text">{{ item.body }}</p>
         </RouterLink>
