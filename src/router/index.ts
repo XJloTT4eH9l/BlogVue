@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../pages/HomeView.vue'
-import PostItem from '../pages/PostItem.vue'
+import MainPage from '../pages/MainPage.vue'
+import PostItemPage from '../pages/PostItemPage.vue'
 import CreatePostPage from '../pages/CreatePostPage.vue'
 
 const router = createRouter({
@@ -8,13 +8,13 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'MainPage',
+      component: MainPage
     },
     {
       path: '/posts/:id',
       name: 'PostItem',
-      component: PostItem,
+      component: PostItemPage,
       props: true
     },
     {
@@ -22,14 +22,6 @@ const router = createRouter({
       name: 'CreatePostPage',
       component: CreatePostPage,
     }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../pages/AboutView.vue')
-    // }
   ]
 })
 

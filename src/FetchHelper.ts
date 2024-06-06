@@ -67,4 +67,18 @@ export default class FetchHelper {
             return null
         }
     }
+    static async deletePost(id: number) {
+        try {
+            const res = await fetch(`${API_POSTS}/${id}`, {method: 'DELETE'});
+
+            if(!res.ok) {
+                throw new Error('Invalid')
+            }
+
+            const resJson = await res.json();
+            return resJson
+        } catch(error) {
+            return null
+        }
+    }
 }
