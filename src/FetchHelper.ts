@@ -1,5 +1,5 @@
 import API_POSTS from "./api";
-import type Post from "./models";
+import type { Post, ShortPost } from "./models";
 
 export default class FetchHelper {
     static async getPosts() {
@@ -70,6 +70,26 @@ export default class FetchHelper {
     static async deletePost(id: number) {
         try {
             const res = await fetch(`${API_POSTS}/${id}`, {method: 'DELETE'});
+
+            if(!res.ok) {
+                throw new Error('Invalid')
+            }
+
+            const resJson = await res.json();
+            return resJson
+        } catch(error) {
+            return null
+        }
+    }
+    static async updatePost(id: number, updatedPost: ShortPost) {
+        try {
+            const res = await fetch(`${API_POSTS}/${id}`, {
+                method: 'PATCH',
+                body: JSON.stringify({ updatedPost }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            });
 
             if(!res.ok) {
                 throw new Error('Invalid')

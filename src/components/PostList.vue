@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import type { PropType } from 'vue'
-    import type Post from '../models'
+    import type { Post } from '../models'
 
     import PostItem from './PostItem.vue'
 

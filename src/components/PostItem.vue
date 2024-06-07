@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { RouterLink } from 'vue-router';
     import type { PropType } from 'vue'
-    import type Post from '../models'
+    import type { Post } from '../models'
 
     defineProps({ 
         item: Object as PropType<Post>

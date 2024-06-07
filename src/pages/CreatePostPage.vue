@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ref } from 'vue';
     import FetchHelper from '../FetchHelper';
-    import type Post from '../models';
+    import type { Post } from '../models';
 
     import Loader from '@/components/Loader.vue';
     import BackButton from '@/components/BackButton.vue';

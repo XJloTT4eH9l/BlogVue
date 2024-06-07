@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ref, onMounted } from 'vue'
     import FetchHelper from '../FetchHelper';
-    import type Post from '../models';
+    import type { Post } from '../models';
 
     import PostList from '../components/PostList.vue';
     import SearchPosts from '../components/SearchPosts.vue';

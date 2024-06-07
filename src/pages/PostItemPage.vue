@@ -2,7 +2,7 @@
     import { useRoute, useRouter } from 'vue-router';
     import { ref, onMounted } from 'vue';
     import FetchHelper from '../FetchHelper';
-    import type Post from '../models';
+    import type { Post } from '../models';
 
     import BackButton from '../components/BackButton.vue';
     import EditPostModal from '../components/EditPostModal.vue'
@@ -14,6 +14,7 @@
     const postPageInfo = ref<Post | null>(null);
     const loadingState = ref<boolean>(true);
     const isModalOpen = ref<boolean>(false);
+    const postUpdatedState = ref<string>('');
 
     const deletePost = async () => {
         loadingState.value = true;
@@ -30,7 +31,12 @@
         router.go(-1);
     }
 
-    const modalHandler = () => isModalOpen.value = !isModalOpen.value;
+    const modalHandler = () => {
+        postUpdatedState.value = '';
+        isModalOpen.value = !isModalOpen.value;
+    }
+
+    const handleUpdatedState = (updatedState: string) => postUpdatedState.value = updatedState;
 
     onMounted(async () => {
         const fetchedPost = await FetchHelper.getSinglePost(Number(id));
@@ -48,7 +54,9 @@
             v-if="postPageInfo"
             :item = postPageInfo
             :isModalOpen
+            :postUpdatedState
             @modalHandler = modalHandler
+            @handleUpdatedState = handleUpdatedState
         />
         <div v-if="postPageInfo">
             <span>UserId: </span>
