@@ -48,13 +48,18 @@
         <div class="modal-edit">
             <h2 v-if="postUpdatedState && postUpdatedState.length > 0">{{ postUpdatedState }}</h2>
             <form v-else @submit.prevent="updatePost" class="modal-edit__form">
+                <h2>Edit post</h2>
+                <label for="title">Title</label>
                 <input
                     v-model="updatedTitle"
+                    id="title"
                     type="text" 
                     placeholder="Edit post title"
                 />
+                <label for="text">Text</label>
                 <input 
                     v-model="updatedText"
+                    id="text"
                     type="text" 
                     placeholder="Edit post text"
                 />
@@ -89,6 +94,14 @@
         background-color: #fff;
         border: 1px solid #000;
         border-radius: 16px;
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            transform: translate(0, 0);
+            border-radius: 0;
+        }
         &__close {
             margin-top: 0;
             position: absolute;
@@ -96,6 +109,12 @@
             top: 15px;
             padding: 0;
             width: 30px;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
         }
         .submit {
             color: #000;
